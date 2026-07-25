@@ -13,6 +13,8 @@
 - Säkrade låst P3 Kanban i alla kapacitetslägen och gjorde Journals separation
   från Valvets evidensflöden permanent synlig.
 - Förankrade FloatingDock i telefonpreviewn och förbättrade dess semantik.
+- Gjorde FloatingDock flödesmedveten och kompaktare så att primärhandlingar
+  inte täcks, utan att minska navigationsknapparnas touchytor.
 - Uppdaterade lokal start-, Studio- och isoleringsdokumentation.
 
 ## v0.2

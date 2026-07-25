@@ -16,7 +16,8 @@ export function FloatingDock({ active }: FloatingDockProps) {
   return (
     <nav
       aria-label="Huvudnavigation"
-      className="fixed bottom-4 left-4 right-4 z-20 flex items-center justify-around rounded-full border border-line-strong bg-surface-1/95 px-3 py-2 shadow-floating backdrop-blur-xl"
+      data-testid="floating-dock"
+      className="sticky bottom-1 z-20 mt-5 flex items-center justify-around rounded-full border border-line-strong bg-surface-1/95 px-3 py-0.5 shadow-floating backdrop-blur-xl"
     >
       {items.map(({ id, label, Icon }) => {
         const selected = id === active;
