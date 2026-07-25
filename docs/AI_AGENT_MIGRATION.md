@@ -20,9 +20,14 @@ This repository now contains a hardened, cross-tool instruction baseline.
 ## Verification commands (in repo)
 
 ```bash
+npm run test
 npm run typecheck
 npm run build
+npm run test:e2e
 ```
+
+Den samlade grinden är `npm run check` och körs även av GitHub Actions-workflowen
+`Quality Gate`.
 
 ## Drift rule
 

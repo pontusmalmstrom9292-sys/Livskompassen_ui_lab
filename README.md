@@ -24,8 +24,16 @@ npm run dev
 Verifiera en ändring med:
 
 ```bash
+npm run test
 npm run typecheck
 npm run build
+npm run test:e2e
+```
+
+Kör hela den lokala kvalitetsgrinden med:
+
+```bash
+npm run check
 ```
 
 ## Använd Studio
@@ -71,3 +79,11 @@ autentisering, Capacitor, PWA-funktioner, hemligheter och verklig användardata
 
 En design eller komponent i detta repo är endast en lokal referens tills den
 har granskats och beslutats separat för produktion.
+
+## Autopilot
+
+Repoets autonoma arbetsflöde definieras av `docs/AUTOPILOT_BACKLOG.md` och den
+repo-specifika skillen `ui-lab-autopilot`. Varje körning tar högst en redo
+backlogpost i en isolerad worktree, kör hela kvalitetsgrinden och får bara
+auto-merga poster märkta `safe`. Låst UX, nya produktbeslut och all
+produktionspåverkan stoppar automatiskt flödet.

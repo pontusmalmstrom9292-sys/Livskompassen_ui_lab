@@ -95,7 +95,10 @@ export function ModuleStudio() {
 
       <main aria-label="Telefonpreview" className="min-w-0 overflow-auto p-3 sm:p-8">
         <div className="mx-auto w-full max-w-[390px] overflow-hidden rounded-[38px] border border-line-strong bg-canvas shadow-floating [transform:translateZ(0)]">
-          <div className="h-[min(820px,calc(100dvh-2rem))] min-h-[620px] w-full overflow-y-auto overscroll-contain">
+          <div
+            data-testid="phone-scroll"
+            className="h-[min(820px,calc(100dvh-2rem))] min-h-[620px] w-full overflow-y-auto overscroll-contain"
+          >
             {preview}
           </div>
         </div>

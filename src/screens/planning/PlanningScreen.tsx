@@ -91,7 +91,7 @@ export function PlanningScreen({ capacity, density, depth }: PlanningScreenProps
         </CalmCard>
       )}
 
-      <ActionButton className="w-full">
+      <ActionButton data-testid="planning-primary-action" className="w-full">
         <Plus aria-hidden="true" className="mr-2 inline" size={18} />
         Ny uppgift
       </ActionButton>

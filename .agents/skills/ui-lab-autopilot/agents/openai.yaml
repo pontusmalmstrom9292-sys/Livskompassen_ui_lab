@@ -1,0 +1,4 @@
+interface:
+  display_name: "UI Lab Autopilot"
+  short_description: "Build one governed UI Lab milestone safely"
+  default_prompt: "Use $ui-lab-autopilot to complete the next ready UI Lab backlog item."
