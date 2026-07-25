@@ -50,7 +50,10 @@ export function ModuleStudio() {
   }[moduleId];
 
   return (
-    <div className="min-h-screen bg-canvas text-text-primary lg:grid lg:grid-cols-[320px_1fr]">
+    <div
+      data-ui-variant="nordic-dusk"
+      className="min-h-screen bg-canvas text-text-primary lg:grid lg:grid-cols-[320px_1fr]"
+    >
       <aside className="border-b border-line-subtle bg-surface-1 p-5 lg:min-h-screen lg:border-b-0 lg:border-r">
         <p className="text-xs uppercase tracking-[0.22em] text-accent">Supermodule Studio</p>
         <h1 className="mt-2 font-display text-3xl">Livskompassen UI Lab</h1>
