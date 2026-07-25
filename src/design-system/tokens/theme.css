@@ -3,6 +3,7 @@
 
   --color-canvas: #07101d;
   --color-surface-1: #0d1728;
+  --color-surface-1-rgb: 13 23 40;
   --color-surface-2: #132035;
   --color-surface-3: #182844;
 
@@ -12,6 +13,7 @@
   --color-text-on-accent: #141006;
 
   --color-accent: #d4af37;
+  --color-accent-rgb: 212 175 55;
   --color-accent-soft: #c6a85d;
 
   --color-line-subtle: rgba(255, 255, 255, 0.07);
@@ -41,6 +43,7 @@
 [data-ui-variant='nordic-dusk'] {
   --color-canvas: #08121e;
   --color-surface-1: #0e1a29;
+  --color-surface-1-rgb: 14 26 41;
   --color-surface-2: #152437;
   --color-surface-3: #1c2f43;
 
@@ -49,6 +52,7 @@
   --color-text-muted: #79899b;
 
   --color-accent: #c9a96e;
+  --color-accent-rgb: 201 169 110;
   --color-accent-soft: #b99a63;
 
   --color-line-subtle: rgba(153, 177, 202, 0.12);
