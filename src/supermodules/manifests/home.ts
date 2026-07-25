@@ -9,8 +9,8 @@ export const homeManifest: SuperModuleManifest = {
   density: 'calm',
   depth: 'soft-3d',
   sections: [
-    { id: 'anchor', title: 'Dagens ankare', order: 1, visible: true },
-    { id: 'next-step', title: 'Nästa mikrosteg', order: 2, visible: true },
+    { id: 'next-step', title: 'Nästa mikrosteg', order: 1, visible: true },
+    { id: 'anchor', title: 'Dagens ankare', order: 2, visible: true },
     { id: 'daily-steps', title: 'Dagens steg', order: 3, visible: true },
     { id: 'quick-capture', title: 'Snabbstart', order: 4, visible: true },
     { id: 'capacity', title: 'Kapacitet', order: 5, visible: true },
@@ -20,9 +20,9 @@ export const homeManifest: SuperModuleManifest = {
     label: 'Ny anteckning',
   },
   capacityModes: {
-    low: ['anchor', 'next-step', 'quick-capture'],
-    normal: ['anchor', 'next-step', 'daily-steps', 'quick-capture', 'capacity'],
-    high: ['anchor', 'next-step', 'daily-steps', 'quick-capture', 'capacity'],
+    low: ['next-step', 'anchor', 'quick-capture'],
+    normal: ['next-step', 'anchor', 'daily-steps', 'quick-capture', 'capacity'],
+    high: ['next-step', 'anchor', 'daily-steps', 'quick-capture', 'capacity'],
   },
   lockedFeatures: [],
 };
