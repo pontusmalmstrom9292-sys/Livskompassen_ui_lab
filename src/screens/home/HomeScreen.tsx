@@ -1,4 +1,5 @@
-import { Mic, NotebookPen, Sparkles } from 'lucide-react';
+import { useState } from 'react';
+import { Check, Mic, NotebookPen, Sparkles } from 'lucide-react';
 import { ActionButton } from '@/design-system/components/ActionButton';
 import { CalmCard } from '@/design-system/components/CalmCard';
 import type { CapacityMode, DensityMode, DepthMode } from '@/design-system/tokens';
@@ -16,6 +17,9 @@ type HomeScreenProps = {
 
 export function HomeScreen({ capacity, density, depth }: HomeScreenProps) {
   const visibleSections = getVisibleSectionIds(homeManifest, capacity);
+  const [completedStepIds, setCompletedStepIds] = useState(
+    () => new Set(homeMock.steps.filter((step) => step.done).map((step) => step.id)),
+  );
   const stepLimit: Record<CapacityMode, number> = { low: 0, normal: 2, high: 3 };
   const quickActionLimit: Record<CapacityMode, number> = { low: 1, normal: 2, high: 3 };
   const quickActionGrid: Record<CapacityMode, string> = {
@@ -29,6 +33,20 @@ export function HomeScreen({ capacity, density, depth }: HomeScreenProps) {
     { label: 'Inkast', Icon: Sparkles },
   ] as const;
 
+  function toggleStep(stepId: string) {
+    setCompletedStepIds((current) => {
+      const next = new Set(current);
+
+      if (next.has(stepId)) {
+        next.delete(stepId);
+      } else {
+        next.add(stepId);
+      }
+
+      return next;
+    });
+  }
+
   return (
     <SuperModuleShell
       title={`God morgon, ${homeMock.userName}`}
@@ -36,26 +54,32 @@ export function HomeScreen({ capacity, density, depth }: HomeScreenProps) {
       density={density}
       depth={depth}
     >
-      {visibleSections.has('anchor') && (
-        <CalmCard className="module-card" depth={depth}>
-          <p className="text-xs uppercase tracking-[0.18em] text-accent">Dagens ankare</p>
-          <p className="mt-3 font-display text-2xl">{homeMock.anchor}</p>
-        </CalmCard>
-      )}
-
       {visibleSections.has('next-step') && (
-        <CalmCard className="module-card" depth={depth}>
+        <CalmCard
+          className="module-card border-accent/35 bg-surface-3"
+          depth={depth}
+          aria-labelledby="home-next-step"
+        >
           <div className="flex items-center justify-between gap-4">
             <div>
               <p className="text-xs uppercase tracking-[0.18em] text-text-muted">
                 Nästa mikrosteg
               </p>
-              <h2 className="mt-2 text-xl font-semibold">{homeMock.nextStep}</h2>
+              <h2 id="home-next-step" className="mt-2 text-xl font-semibold">
+                {homeMock.nextStep}
+              </h2>
             </div>
             <div className="grid size-14 shrink-0 place-items-center rounded-full border border-line-strong bg-surface-3 text-accent shadow-inset">
               <Sparkles aria-hidden="true" size={22} />
             </div>
           </div>
+        </CalmCard>
+      )}
+
+      {visibleSections.has('anchor') && (
+        <CalmCard className="module-card" depth={depth}>
+          <p className="text-xs uppercase tracking-[0.18em] text-accent">Dagens ankare</p>
+          <p className="mt-3 font-display text-2xl">{homeMock.anchor}</p>
         </CalmCard>
       )}
 
@@ -68,13 +92,46 @@ export function HomeScreen({ capacity, density, depth }: HomeScreenProps) {
             </span>
           </div>
           <ul className="divide-y divide-line-subtle">
-            {homeMock.steps.slice(0, stepLimit[capacity]).map((step) => (
-              <li key={step.id} className="flex min-h-12 items-center gap-3 py-3">
-                <span className="size-5 rounded-md border border-accent/55" aria-hidden="true" />
-                <span className="flex-1 text-sm">{step.label}</span>
-                <time className="text-xs text-text-muted">{step.time}</time>
-              </li>
-            ))}
+            {homeMock.steps.slice(0, stepLimit[capacity]).map((step) => {
+              const isCompleted = completedStepIds.has(step.id);
+
+              return (
+                <li key={step.id}>
+                  <button
+                    type="button"
+                    aria-pressed={isCompleted}
+                    aria-label={`${isCompleted ? 'Markera som inte klar' : 'Markera som klar'}: ${step.label}`}
+                    data-testid={`home-step-${step.id}`}
+                    onClick={() => toggleStep(step.id)}
+                    className={[
+                      'flex min-h-12 w-full items-center gap-3 rounded-control py-3 text-left',
+                      'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70',
+                    ].join(' ')}
+                  >
+                    <span
+                      aria-hidden="true"
+                      className={[
+                        'grid size-6 shrink-0 place-items-center rounded-md border',
+                        isCompleted
+                          ? 'border-accent bg-accent text-text-on-accent'
+                          : 'border-accent/55 text-transparent',
+                      ].join(' ')}
+                    >
+                      <Check size={15} strokeWidth={2.5} />
+                    </span>
+                    <span
+                      className={[
+                        'flex-1 text-sm',
+                        isCompleted ? 'text-text-muted line-through' : 'text-text-primary',
+                      ].join(' ')}
+                    >
+                      {step.label}
+                    </span>
+                    <time className="text-xs text-text-muted">{step.time}</time>
+                  </button>
+                </li>
+              );
+            })}
           </ul>
         </CalmCard>
       )}
