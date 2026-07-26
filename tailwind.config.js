@@ -6,7 +6,7 @@ export default {
       colors: {
         canvas: 'var(--color-canvas)',
         surface: {
-          1: 'var(--color-surface-1)',
+          1: 'rgb(var(--color-surface-1-rgb) / <alpha-value>)',
           2: 'var(--color-surface-2)',
           3: 'var(--color-surface-3)',
         },
@@ -17,7 +17,7 @@ export default {
           'on-accent': 'var(--color-text-on-accent)',
         },
         accent: {
-          DEFAULT: 'var(--color-accent)',
+          DEFAULT: 'rgb(var(--color-accent-rgb) / <alpha-value>)',
           soft: 'var(--color-accent-soft)',
         },
         line: {

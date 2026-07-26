@@ -3,6 +3,7 @@
 
   --color-canvas: #07101d;
   --color-surface-1: #0d1728;
+  --color-surface-1-rgb: 13 23 40;
   --color-surface-2: #132035;
   --color-surface-3: #182844;
 
@@ -12,6 +13,7 @@
   --color-text-on-accent: #141006;
 
   --color-accent: #d4af37;
+  --color-accent-rgb: 212 175 55;
   --color-accent-soft: #c6a85d;
 
   --color-line-subtle: rgba(255, 255, 255, 0.07);
@@ -36,4 +38,37 @@
   --shadow-inset:
     inset 0 1px 0 rgba(255, 255, 255, 0.045),
     inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+}
+
+[data-ui-variant='nordic-dusk'] {
+  --color-canvas: #08121e;
+  --color-surface-1: #0e1a29;
+  --color-surface-1-rgb: 14 26 41;
+  --color-surface-2: #152437;
+  --color-surface-3: #1c2f43;
+
+  --color-text-primary: #edf2f7;
+  --color-text-secondary: #a7b5c5;
+  --color-text-muted: #79899b;
+
+  --color-accent: #c9a96e;
+  --color-accent-rgb: 201 169 110;
+  --color-accent-soft: #b99a63;
+
+  --color-line-subtle: rgba(153, 177, 202, 0.12);
+  --color-line-strong: rgba(201, 169, 110, 0.28);
+
+  --shadow-calm:
+    0 12px 34px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(237, 242, 247, 0.035);
+
+  --shadow-raised:
+    0 24px 56px rgba(0, 0, 0, 0.42),
+    inset 0 1px 0 rgba(237, 242, 247, 0.045),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.4);
+
+  --shadow-floating: 0 32px 84px rgba(0, 0, 0, 0.6);
+  --shadow-inset:
+    inset 0 1px 0 rgba(237, 242, 247, 0.04),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.44);
 }
