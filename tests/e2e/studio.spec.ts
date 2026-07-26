@@ -6,11 +6,31 @@ const capacityCases = [
   { control: 'Hög', id: 'high' },
 ] as const;
 
+const densityCases = [
+  { control: 'Lugn', id: 'calm' },
+  { control: 'Balanserad', id: 'balanced' },
+  { control: 'Full', id: 'full' },
+] as const;
+
+const depthCases = [
+  { control: 'Platt', id: 'flat' },
+  { control: 'Mjuk 3D', id: 'soft-3d' },
+  { control: 'Instrument', id: 'instrument' },
+] as const;
+
 async function selectModule(page: Page, label: 'Home' | 'Planning' | 'Journal') {
   await page.getByRole('button', { name: label, exact: true }).click();
 }
 
 async function selectCapacity(page: Page, label: 'Låg' | 'Normal' | 'Hög') {
+  await page.getByRole('button', { name: label, exact: true }).click();
+}
+
+async function selectDensity(page: Page, label: 'Lugn' | 'Balanserad' | 'Full') {
+  await page.getByRole('button', { name: label, exact: true }).click();
+}
+
+async function selectDepth(page: Page, label: 'Platt' | 'Mjuk 3D' | 'Instrument') {
   await page.getByRole('button', { name: label, exact: true }).click();
 }
 
@@ -64,9 +84,23 @@ for (const capacity of capacityCases) {
     ).toBeVisible();
     await expect(page.getByText('Nästa mikrosteg', { exact: true })).toBeVisible();
 
+    const nextStepBox = await page.getByText('Nästa mikrosteg', { exact: true }).boundingBox();
+    const anchorBox = await page.getByText('Dagens ankare', { exact: true }).boundingBox();
+    expect(nextStepBox).not.toBeNull();
+    expect(anchorBox).not.toBeNull();
+    expect(nextStepBox!.y).toBeLessThan(anchorBox!.y);
+
     if (capacity.id === 'low') {
       await expect(page.getByText('Dagens steg', { exact: true })).toHaveCount(0);
       await expect(page.getByText('Kapacitet idag', { exact: true })).toHaveCount(0);
+
+      const phoneBox = await page.getByTestId('phone-scroll').boundingBox();
+      const dockBox = await page.getByTestId('floating-dock').boundingBox();
+      expect(phoneBox).not.toBeNull();
+      expect(dockBox).not.toBeNull();
+      expect(phoneBox!.y + phoneBox!.height - (dockBox!.y + dockBox!.height)).toBeLessThanOrEqual(
+        24,
+      );
     } else {
       await expect(page.getByText('Dagens steg', { exact: true })).toBeVisible();
       await expect(page.getByText('Kapacitet idag', { exact: true })).toBeVisible();
@@ -125,3 +159,51 @@ for (const capacity of capacityCases) {
     await expectSharedSafety(page);
   });
 }
+
+test('Home supports every capacity, density and depth combination', async ({ page }) => {
+  await selectModule(page, 'Home');
+
+  for (const capacity of capacityCases) {
+    await selectCapacity(page, capacity.control);
+
+    for (const density of densityCases) {
+      await selectDensity(page, density.control);
+
+      for (const depth of depthCases) {
+        await selectDepth(page, depth.control);
+        await expect(
+          page.getByText(
+            `home · ${capacity.id} · ${density.id} · ${depth.id}`,
+            { exact: true },
+          ),
+        ).toBeVisible();
+        await expectSharedSafety(page);
+      }
+    }
+  }
+});
+
+test('Home daily steps expose a working keyboard-safe completion control', async ({ page }) => {
+  await selectModule(page, 'Home');
+  await selectCapacity(page, 'Normal');
+
+  const capacityFillColor = await page
+    .getByRole('meter', { name: 'Kapacitet' })
+    .locator('div')
+    .evaluate((element) => getComputedStyle(element).backgroundColor);
+  expect(capacityFillColor).not.toBe('rgba(0, 0, 0, 0)');
+
+  const firstStep = page.getByTestId('home-step-step-1');
+  const secondStep = page.getByTestId('home-step-step-2');
+  await expect(firstStep).toHaveAttribute('aria-pressed', 'false');
+  await firstStep.focus();
+  await expect(firstStep).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(secondStep).toBeFocused();
+  const focusedStepShadow = await secondStep.evaluate(
+    (element) => getComputedStyle(element).boxShadow,
+  );
+  expect(focusedStepShadow).not.toBe('none');
+  await secondStep.press('Enter');
+  await expect(secondStep).toHaveAttribute('aria-pressed', 'true');
+});
