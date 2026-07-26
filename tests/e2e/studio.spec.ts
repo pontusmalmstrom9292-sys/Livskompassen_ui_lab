@@ -18,7 +18,7 @@ const depthCases = [
   { control: 'Instrument', id: 'instrument' },
 ] as const;
 
-async function selectModule(page: Page, label: 'Home' | 'Planning' | 'Journal') {
+async function selectModule(page: Page, label: 'Home' | 'Planning' | 'Journal' | 'Family') {
   await page.getByRole('button', { name: label, exact: true }).click();
 }
 
@@ -154,6 +154,29 @@ for (const capacity of capacityCases) {
     } else {
       await expect(page.getByText('Dagens reflektion', { exact: true })).toBeVisible();
       await expect(page.getByText('Senaste inlägg', { exact: true })).toBeVisible();
+    }
+
+    await expectSharedSafety(page);
+  });
+
+  test(`Family keeps Barnfokus visible in ${capacity.id} mode`, async ({ page }) => {
+    await selectModule(page, 'Family');
+    await selectCapacity(page, capacity.control);
+
+    await expect(
+      page.getByText(`family · ${capacity.id} · calm · soft-3d`, { exact: true }),
+    ).toBeVisible();
+    await expect(
+      page.getByText('Barnfokus - alltid synligt', { exact: true }),
+    ).toBeVisible();
+    await expect(page.getByText('Leo', { exact: true })).toBeVisible();
+
+    if (capacity.id === 'low') {
+      await expect(page.getByText('Kommande aktiviteter', { exact: true })).toHaveCount(0);
+      await expect(page.getByText('Hushållsstatus', { exact: true })).toHaveCount(0);
+    } else {
+      await expect(page.getByText('Kommande aktiviteter', { exact: true })).toBeVisible();
+      await expect(page.getByText('Hushållsstatus', { exact: true })).toBeVisible();
     }
 
     await expectSharedSafety(page);
