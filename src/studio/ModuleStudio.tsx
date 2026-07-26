@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { HomeScreen } from '@/screens/home/HomeScreen';
 import { JournalScreen } from '@/screens/journal/JournalScreen';
 import { PlanningScreen } from '@/screens/planning/PlanningScreen';
+import { FamilyScreen } from '@/screens/family/FamilyScreen';
 import type { CapacityMode, DensityMode, DepthMode } from '@/design-system/tokens';
 
-type ModuleId = 'home' | 'planning' | 'journal';
+type ModuleId = 'home' | 'planning' | 'journal' | 'family';
 
 type ControlOption<T extends string> = {
   value: T;
@@ -15,6 +16,7 @@ const moduleOptions = [
   { value: 'home', label: 'Home' },
   { value: 'planning', label: 'Planning' },
   { value: 'journal', label: 'Journal' },
+  { value: 'family', label: 'Family' },
 ] as const satisfies readonly ControlOption<ModuleId>[];
 
 const capacityOptions = [
@@ -47,6 +49,7 @@ export function ModuleStudio() {
     home: <HomeScreen capacity={capacity} density={density} depth={depth} />,
     planning: <PlanningScreen capacity={capacity} density={density} depth={depth} />,
     journal: <JournalScreen capacity={capacity} density={density} depth={depth} />,
+    family: <FamilyScreen capacity={capacity} density={density} depth={depth} />,
   }[moduleId];
 
   return (
