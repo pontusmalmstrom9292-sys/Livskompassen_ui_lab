@@ -5,7 +5,7 @@ import type {
   ModuleZone,
 } from '@/design-system/tokens';
 
-export type SuperModuleStatus = 'locked' | 'configurable' | 'experimental';
+export type SuperModuleStatus = 'locked' | 'configurable' | 'experimental' | 'reference' | 'candidate' | 'merged' | 'archived';
 export type SuperModuleLayout = 'stack' | 'grid' | 'kanban' | 'focus' | 'dashboard' | 'writing';
 
 export interface SuperModuleSection {

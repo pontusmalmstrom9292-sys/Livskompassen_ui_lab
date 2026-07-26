@@ -13,4 +13,4 @@ Alla mockups ska få ett unikt ID och en status.
 |---|---|---|---|---|---|
 | HOME-001 | Home | Executive Midnight | reference | Tydligt ankare och dagssteg | Kan bli dashboardtung |
 | PLAN-001 | Planning | Calm P3 | reference | P3 bevaras i alla kapacitetslägen | Tre kolumner kräver fortsatt kort och tydligt innehåll |
-| JOURNAL-001 | Journal | Writing Focus | candidate | Lugn reflektion | Får inte likna Valv |
+| JOURNAL-001 | Journal | Writing Focus | reference | Lugn reflektion | Får inte likna Valv |

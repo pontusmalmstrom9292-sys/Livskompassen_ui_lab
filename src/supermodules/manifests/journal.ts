@@ -4,7 +4,7 @@ export const journalManifest: SuperModuleManifest = {
   id: 'journal',
   title: 'Dagbok',
   zone: 'hjartat',
-  status: 'configurable',
+  status: 'reference',
   layout: 'writing',
   density: 'calm',
   depth: 'soft-3d',

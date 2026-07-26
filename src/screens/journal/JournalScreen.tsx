@@ -72,6 +72,7 @@ export function JournalScreen({ capacity, density, depth }: JournalScreenProps) 
         </CalmCard>
       )}
 
+      <div className="shrink-0 h-24" aria-hidden="true" />
       <FloatingDock active="home" />
     </SuperModuleShell>
   );

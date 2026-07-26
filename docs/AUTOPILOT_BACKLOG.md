@@ -20,7 +20,7 @@ Varje körning arbetar i en separat Git-worktree och får bara slutföra en post
 | ID | Status | Merge | Leverans | Beroenden | Acceptanskriterier |
 |---|---|---|---|---|---|
 | AUTO-001 | done | safe | Autopilotgrund | — | Repo-skill, Vitest, Playwright, Quality Gate och nattlig worktree-körning är konfigurerade. |
-| JOURNAL-010 | ready | safe | `JOURNAL-001` till reference | AUTO-001 | Låg kapacitet visar bara skrivytan; normal/hög visar reflektion och historik; separationen från Valvet är alltid synlig; ingen docköverlappning eller overflow. |
+| JOURNAL-010 | done | safe | `JOURNAL-001` till reference | AUTO-001 | Låg kapacitet visar bara skrivytan; normal/hög visar reflektion och historik; separationen från Valvet är alltid synlig; ingen docköverlappning eller overflow. |
 | FAMILY-020 | ready | review | Barnfokus-kandidat | JOURNAL-010 | Barnfokusfrågor finns kvar som uttryckligt låst flöde; typat manifest och fiktiv mockdata; låg kapacitet minskar innehåll utan att dölja frågorna. |
 | ECONOMY-030 | ready | safe | Economy-kandidat | JOURNAL-010 | Endast fiktiv mockdata; kognitiv grind i alla lägen; ett tydligt nästa mikrosteg; ingen bank-, API- eller backendkoppling. |
 | VAULT-040 | ready | review | Valvet-kandidat | FAMILY-020 | Flikarna Mönster, Orkester, Kunskapsbank och Aktörskarta finns kvar; manuell HITL-promovering är synlig; Journal blandas inte med evidensflödet. |
