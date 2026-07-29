@@ -23,7 +23,7 @@ Varje körning arbetar i en separat Git-worktree och får bara slutföra en post
 | JOURNAL-010 | done | safe | `JOURNAL-001` till reference | AUTO-001 | Låg kapacitet visar bara skrivytan; normal/hög visar reflektion och historik; separationen från Valvet är alltid synlig; ingen docköverlappning eller overflow. |
 | FAMILY-020 | done | review | Barnfokus-kandidat | JOURNAL-010 | Barnfokusfrågor finns kvar som uttryckligt låst flöde; typat manifest och fiktiv mockdata; låg kapacitet minskar innehåll utan att dölja frågorna. |
 | ECONOMY-030 | in_progress | safe | Economy-kandidat | JOURNAL-010 | Endast fiktiv mockdata; kognitiv grind i alla lägen; ett tydligt nästa mikrosteg; ingen bank-, API- eller backendkoppling. |
-| VAULT-040 | in_progress | review | Valvet-kandidat | FAMILY-020 | Flikarna Mönster, Orkester, Kunskapsbank och Aktörskarta finns kvar; manuell HITL-promovering är synlig; Journal blandas inte med evidensflödet. |
+| VAULT-040 | done | review | Valvet-kandidat | FAMILY-020 | Flikarna Mönster, Orkester, Kunskapsbank och Aktörskarta finns kvar; manuell HITL-promovering är synlig; Journal blandas inte med evidensflödet. |
 | WELLBEING-050 | ready | review | Två placeringsvarianter | ECONOMY-030 | Skapa separata namngivna kandidater för Hjärtat och Vardagen; välj ingen vinnare; båda använder samma typade mockdata och manifestgräns. |
 | SYSTEM-060 | ready | safe | Tvärmodulär tillgänglighetsrunda | FAMILY-020, ECONOMY-030, VAULT-040, WELLBEING-050 | Alla registrerade vyer klarar touch-, overflow-, kapacitets- och locked-UX-tester; governancefilerna är synkroniserade. |
 

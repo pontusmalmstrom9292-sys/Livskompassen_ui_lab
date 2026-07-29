@@ -27,6 +27,17 @@ export function VaultScreen({ capacity, density, depth }: VaultScreenProps) {
         <span>{vaultMock.separationNotice}</span>
       </div>
 
+      {visibleSections.has('promotion-gate') && (
+        <CalmCard className="module-card" depth={depth}>
+          <div className="flex items-center gap-2">
+            <ShieldCheck aria-hidden="true" className="text-accent" size={18} />
+            <h2 className="font-semibold">Manuell kontroll före promovering</h2>
+          </div>
+          <p className="mt-3 text-sm leading-6 text-text-secondary">{vaultMock.promotionGuidance}</p>
+          <ActionButton className="mt-4 w-full">{vaultManifest.primaryAction?.label}</ActionButton>
+        </CalmCard>
+      )}
+
       {visibleSections.has('vault-tabs') && (
         <section aria-labelledby="vault-tabs-title">
           <div className="mb-3 flex items-center gap-2">
@@ -77,17 +88,6 @@ export function VaultScreen({ capacity, density, depth }: VaultScreenProps) {
           <p className="text-xs uppercase tracking-[0.18em] text-text-muted">Nästa trygga steg</p>
           <p className="mt-2 text-sm font-semibold text-text-primary">{vaultMock.nextReview}</p>
         </div>
-      )}
-
-      {visibleSections.has('promotion-gate') && (
-        <CalmCard className="module-card" depth={depth}>
-          <div className="flex items-center gap-2">
-            <ShieldCheck aria-hidden="true" className="text-accent" size={18} />
-            <h2 className="font-semibold">Manuell kontroll före promovering</h2>
-          </div>
-          <p className="mt-3 text-sm leading-6 text-text-secondary">{vaultMock.promotionGuidance}</p>
-          <ActionButton className="mt-4 w-full">{vaultManifest.primaryAction?.label}</ActionButton>
-        </CalmCard>
       )}
 
       <div className="shrink-0 h-24" aria-hidden="true" />
