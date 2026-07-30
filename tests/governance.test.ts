@@ -4,8 +4,9 @@ import { getVisibleSectionIds } from '@/supermodules/core/visibility';
 import { homeManifest } from '@/supermodules/manifests/home';
 import { journalManifest } from '@/supermodules/manifests/journal';
 import { planningManifest } from '@/supermodules/manifests/planning';
+import { vaultManifest } from '@/supermodules/manifests/vault';
 
-const manifests = [homeManifest, planningManifest, journalManifest];
+const manifests = [homeManifest, planningManifest, journalManifest, vaultManifest];
 
 describe('SuperModule governance', () => {
   it('keeps Fyren outside the canonical product zones', () => {
@@ -36,5 +37,17 @@ describe('SuperModule governance', () => {
   it('preserves the explicitly locked P3 and Journal boundaries', () => {
     expect(planningManifest.lockedFeatures).toContain('p3-kanban');
     expect(journalManifest.lockedFeatures).toContain('separate-from-vault');
+  });
+
+  it('preserves Valvet tabs, manual promotion and its separation from Journal', () => {
+    expect(vaultManifest.lockedFeatures).toEqual(
+      expect.arrayContaining([
+        'vault-tabs',
+        'manual-hitl-promotion',
+        'separate-from-journal-evidence',
+      ]),
+    );
+    expect(getVisibleSectionIds(vaultManifest, 'low')).toContain('vault-tabs');
+    expect(getVisibleSectionIds(vaultManifest, 'low')).toContain('promotion-gate');
   });
 });
