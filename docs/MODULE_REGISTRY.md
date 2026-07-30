@@ -8,4 +8,4 @@
 | Family | Familjen | locked | stack | Barnfokus | Senare |
 | Wellbeing | Hjärtat/Vardagen | experimental | hub | — | Placering utreds |
 | Economy | Vardagen | configurable | dashboard | Kognitiv grind | Senare |
-| Vault | Valvet | locked | secure | HITL + interna flikar | Senare |
+| Vault | Valvet | locked | secure | HITL + interna flikar | VAULT-001 kandidat |

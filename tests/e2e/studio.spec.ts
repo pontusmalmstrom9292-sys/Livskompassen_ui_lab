@@ -18,7 +18,7 @@ const depthCases = [
   { control: 'Instrument', id: 'instrument' },
 ] as const;
 
-async function selectModule(page: Page, label: 'Home' | 'Planning' | 'Journal' | 'Family') {
+async function selectModule(page: Page, label: 'Home' | 'Planning' | 'Journal' | 'Family' | 'Vault') {
   await page.getByRole('button', { name: label, exact: true }).click();
 }
 
@@ -181,7 +181,66 @@ for (const capacity of capacityCases) {
 
     await expectSharedSafety(page);
   });
+
+  test(`Vault preserves its locked evidence flow in ${capacity.id} mode`, async ({ page }) => {
+    await selectModule(page, 'Vault');
+    await selectCapacity(page, capacity.control);
+
+    await expect(
+      page.getByText(`vault · ${capacity.id} · calm · soft-3d`, { exact: true }),
+    ).toBeVisible();
+    await expect(
+      page.getByText('Evidensflödet är separat från Dagbokens personliga reflektioner.', {
+        exact: true,
+      }),
+    ).toBeVisible();
+    await expect(page.getByRole('tablist', { name: 'Valvets flikar' })).toBeVisible();
+    await expect(page.getByRole('tab', { name: 'Mönster', exact: true })).toBeVisible();
+    await expect(page.getByRole('tab', { name: 'Orkester', exact: true })).toBeVisible();
+    await expect(page.getByRole('tab', { name: 'Kunskapsbank', exact: true })).toBeVisible();
+    await expect(page.getByRole('tab', { name: 'Aktörskarta', exact: true })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: 'Manuell kontroll före promovering', exact: true }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole('button', { name: 'Granska och promovera manuellt', exact: true }),
+    ).toBeVisible();
+
+    if (capacity.id === 'low') {
+      await expect(page.getByText('Nästa trygga steg', { exact: true })).toHaveCount(0);
+    } else {
+      await expect(page.getByText('Nästa trygga steg', { exact: true })).toBeVisible();
+    }
+
+    const promotionActionBox = await page
+      .getByRole('button', { name: 'Granska och promovera manuellt', exact: true })
+      .boundingBox();
+    const dockBox = await page.getByTestId('floating-dock').boundingBox();
+    expect(promotionActionBox).not.toBeNull();
+    expect(dockBox).not.toBeNull();
+    expect(promotionActionBox!.y + promotionActionBox!.height).toBeLessThanOrEqual(dockBox!.y);
+
+    await expectSharedSafety(page);
+  });
 }
+
+test('Vault tabs reveal their distinct fictional evidence contexts', async ({ page }) => {
+  await selectModule(page, 'Vault');
+
+  const tabs = [
+    ['Mönster', 'Fiktivt mönster: återkommande avbrott vid sena eftermiddagar.'],
+    ['Orkester', 'Fiktiv orkestrering: samla underlag före nästa trygga steg.'],
+    ['Kunskapsbank', 'Fiktiv kunskap: korta pauser kan minska belastningen före beslut.'],
+    ['Aktörskarta', 'Fiktiv aktörskarta: Sam, mentor och vårdcentralen kan vara relevanta.'],
+  ] as const;
+
+  for (const [label, detail] of tabs) {
+    const tab = page.getByRole('tab', { name: label, exact: true });
+    await tab.click();
+    await expect(tab).toHaveAttribute('aria-selected', 'true');
+    await expect(page.getByRole('tabpanel')).toHaveText(detail);
+  }
+});
 
 test('Home supports every capacity, density and depth combination', async ({ page }) => {
   await selectModule(page, 'Home');
