@@ -13,7 +13,7 @@ Följande etiketter används genomgående:
 - **FÖRSLAG EJ AKTIVERAT** — möjlig nästa riktning, inte ett godkänt genomförande.
 - **EJ VERIFIERAT** — saknas i tillgängligt repo-/chatunderlag eller har motstridiga källor.
 
-Detta dokument är själv den enda avsiktliga filändringen i den aktuella handoff-körningen. Ingen kod, commit, push, merge eller deploy har gjorts.
+Detta dokument är den enda avsiktliga filändringen i den chattkörning som dokumentet sammanfattar. Ingen kod, commit, push, merge eller deploy har gjorts i den körningen.
 
 ## 1. Produkt- och repoavgränsning
 
