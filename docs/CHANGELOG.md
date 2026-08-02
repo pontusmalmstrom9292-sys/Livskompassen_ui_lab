@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- Lade till VAULT-001 som Valvet-kandidat med de låsta flikarna Mönster,
+  Orkester, Kunskapsbank och Aktörskarta.
+- Gjorde Journal/evidens-separationen och manuell HITL-promovering tydliga i
+  alla kapacitetslägen med enbart typad, fiktiv mockdata.
+
 ## v0.2 — lokal stabilisering (2026-07-25)
 
 - Rättade Vite/TypeScript-projektreferenserna med `noEmit`, Node-typer och
