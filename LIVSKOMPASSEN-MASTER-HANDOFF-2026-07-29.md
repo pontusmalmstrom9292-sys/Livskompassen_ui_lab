@@ -1,4 +1,4 @@
-# Livskompassen v2 — MASTER-HANDOFF
+# Livskompassen UI Lab — MASTER-HANDOFF (v2-kontext)
 
 **Datum:** 2026-07-29  
 **Underlag:** tillgänglig originalchatt, lokalt repo `Livskompassen_ui_lab` och GitHub-status läst 2026-07-29.  
