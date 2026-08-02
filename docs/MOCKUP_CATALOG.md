@@ -15,3 +15,4 @@ Alla mockups ska få ett unikt ID och en status.
 | PLAN-001 | Planning | Calm P3 | reference | P3 bevaras i alla kapacitetslägen | Tre kolumner kräver fortsatt kort och tydligt innehåll |
 | JOURNAL-001 | Journal | Writing Focus | reference | Lugn reflektion | Får inte likna Valv |
 | FAMILY-001 | Family | Barnfokus | candidate | Tydligt fokus på barnen | Kan bli för stelt i framtiden |
+| VAULT-001 | Vault | Evidensgrind | candidate | Låsta flikar och tydlig manuell promovering | Kräver produktgranskning före promotion |
