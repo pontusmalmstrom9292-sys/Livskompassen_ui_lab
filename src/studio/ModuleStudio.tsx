@@ -4,9 +4,10 @@ import { JournalScreen } from '@/screens/journal/JournalScreen';
 import { PlanningScreen } from '@/screens/planning/PlanningScreen';
 import { FamilyScreen } from '@/screens/family/FamilyScreen';
 import { VaultScreen } from '@/screens/vault/VaultScreen';
+import { EconomyScreen } from '@/screens/economy/EconomyScreen';
 import type { CapacityMode, DensityMode, DepthMode } from '@/design-system/tokens';
 
-type ModuleId = 'home' | 'planning' | 'journal' | 'family' | 'vault';
+type ModuleId = 'home' | 'planning' | 'journal' | 'family' | 'vault' | 'economy';
 
 type ControlOption<T extends string> = {
   value: T;
@@ -19,6 +20,7 @@ const moduleOptions = [
   { value: 'journal', label: 'Journal' },
   { value: 'family', label: 'Family' },
   { value: 'vault', label: 'Vault' },
+  { value: 'economy', label: 'Economy' },
 ] as const satisfies readonly ControlOption<ModuleId>[];
 
 const capacityOptions = [
@@ -53,6 +55,7 @@ export function ModuleStudio() {
     journal: <JournalScreen capacity={capacity} density={density} depth={depth} />,
     family: <FamilyScreen capacity={capacity} density={density} depth={depth} />,
     vault: <VaultScreen capacity={capacity} density={density} depth={depth} />,
+    economy: <EconomyScreen capacity={capacity} density={density} depth={depth} />,
   }[moduleId];
 
   return (

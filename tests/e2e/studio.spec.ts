@@ -18,7 +18,7 @@ const depthCases = [
   { control: 'Instrument', id: 'instrument' },
 ] as const;
 
-async function selectModule(page: Page, label: 'Home' | 'Planning' | 'Journal' | 'Family' | 'Vault') {
+async function selectModule(page: Page, label: 'Home' | 'Planning' | 'Journal' | 'Family' | 'Vault' | 'Economy') {
   await page.getByRole('button', { name: label, exact: true }).click();
 }
 
@@ -219,6 +219,27 @@ for (const capacity of capacityCases) {
     expect(promotionActionBox).not.toBeNull();
     expect(dockBox).not.toBeNull();
     expect(promotionActionBox!.y + promotionActionBox!.height).toBeLessThanOrEqual(dockBox!.y);
+
+    await expectSharedSafety(page);
+  });
+
+  test(`Economy preserves cognitive gate and microstep in ${capacity.id} mode`, async ({ page }) => {
+    await selectModule(page, 'Economy');
+    await selectCapacity(page, capacity.control);
+
+    await expect(
+      page.getByText(`economy · ${capacity.id} · calm · soft-3d`, { exact: true }),
+    ).toBeVisible();
+    await expect(
+      page.getByText('Kognitiv grind: Inga direkta transaktioner eller bankkopplingar.', { exact: true }),
+    ).toBeVisible();
+    await expect(page.getByText('Granska veckans tre fasta utgifter', { exact: true })).toBeVisible();
+
+    if (capacity.id === 'low') {
+      await expect(page.getByText('Fiktiv översikt', { exact: true })).toHaveCount(0);
+    } else {
+      await expect(page.getByText('Fiktiv översikt', { exact: true })).toBeVisible();
+    }
 
     await expectSharedSafety(page);
   });
