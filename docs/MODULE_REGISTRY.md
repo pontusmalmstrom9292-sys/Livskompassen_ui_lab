@@ -7,5 +7,5 @@
 | Journal | Hjärtat | configurable | writing | Separation från Valvet | Bygg efter Planning |
 | Family | Familjen | locked | stack | Barnfokus | Senare |
 | Wellbeing | Hjärtat/Vardagen | experimental | hub | — | Placering utreds |
-| Economy | Vardagen | configurable | dashboard | Kognitiv grind | Senare |
+| Economy | Vardagen | candidate | dashboard | Kognitiv grind | ECONOMY-001 kandidat |
 | Vault | Valvet | locked | secure | HITL + interna flikar | VAULT-001 kandidat |

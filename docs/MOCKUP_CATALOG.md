@@ -16,3 +16,4 @@ Alla mockups ska få ett unikt ID och en status.
 | JOURNAL-001 | Journal | Writing Focus | reference | Lugn reflektion | Får inte likna Valv |
 | FAMILY-001 | Family | Barnfokus | candidate | Tydligt fokus på barnen | Kan bli för stelt i framtiden |
 | VAULT-001 | Vault | Evidensgrind | candidate | Låsta flikar och tydlig manuell promovering | Kräver produktgranskning före promotion |
+| ECONOMY-001 | Economy | Kognitiv grind | candidate | Tydlig kognitiv grind utan bankkoppling | Kräver tydlig avgränsning mot skarp ekonomi |

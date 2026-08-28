@@ -4,9 +4,11 @@ import { getVisibleSectionIds } from '@/supermodules/core/visibility';
 import { homeManifest } from '@/supermodules/manifests/home';
 import { journalManifest } from '@/supermodules/manifests/journal';
 import { planningManifest } from '@/supermodules/manifests/planning';
+import { familyManifest } from '@/supermodules/manifests/family';
+import { economyManifest } from '@/supermodules/manifests/economy';
 import { vaultManifest } from '@/supermodules/manifests/vault';
 
-const manifests = [homeManifest, planningManifest, journalManifest, vaultManifest];
+const manifests = [homeManifest, planningManifest, journalManifest, familyManifest, vaultManifest, economyManifest];
 
 describe('SuperModule governance', () => {
   it('keeps Fyren outside the canonical product zones', () => {
